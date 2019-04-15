@@ -1,10 +1,12 @@
 package main
 
 import (
-	"LoveCalculator/web"
+	"fmt"
 	"log"
 	"net/http"
 	"text/template"
+
+	"github.com/varvaragabbarelli/LoveCalculator/websiteContent"
 )
 
 type Service struct {
@@ -30,13 +32,16 @@ func GetResponse(w http.ResponseWriter, r *http.Request) error {
 		tmpl.Execute(w, nil)
 		return nil
 	}
-	details := web.WebResult{
+	details := websiteContent.WebContent{
 		Name1: r.FormValue("fname"),
 		Name2: r.FormValue("sname"),
 	}
+
+	log.Println("name1: ", details.Name1, " Name2: ", details.Name2)
+
 	return nil
 }
 
 func main() {
-
+	http.ListenAndServe(fmt.Sprintf(":%d", 8080), GetMux())
 }
