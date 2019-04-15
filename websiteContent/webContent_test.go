@@ -19,7 +19,7 @@ func TestGetResult(t *testing.T) {
 
 	t.Log(w)
 	if w.Name1 != "John" {
-		t.Log("Name one is not as expected! >:( )")
+		t.Log("Name one is not as expected! >:( how the hell it's even possible?!")
 		t.Fail()
 	}
 
