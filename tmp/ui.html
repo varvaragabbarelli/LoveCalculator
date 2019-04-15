@@ -1,3 +1,7 @@
+{{if .Success}}
+	<h1>Here is your result!</h1>
+	<textarea name="result">{{.Result}}</textarea><br />
+{{else}}
 <h1>Welcome to Love Calculator!</h1>
 	<form method="POST">
 		<label>Name number 1:</label><br />
@@ -6,3 +10,4 @@
 		<input type="text" name="sname"><br />
 		<input type="submit">
 	</form>
+	{{end}}

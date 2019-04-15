@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"io/ioutil"
 	"log"
 	"net/http"
 	"text/template"
@@ -39,6 +40,14 @@ func GetResponse(w http.ResponseWriter, r *http.Request) error {
 
 	log.Println("name1: ", details.Name1, " Name2: ", details.Name2)
 
+	resp, _ := websiteContent.DoRequest(&details)
+
+	body, _ := ioutil.ReadAll(resp.Body)
+	details, _ = websiteContent.GetResult(string(body))
+	tmpl.Execute(w, struct {
+		Success bool
+		Result  string
+	}{true, details.Result})
 	return nil
 }
 
